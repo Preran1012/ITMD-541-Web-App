@@ -27,9 +27,9 @@ section {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-#intro {
+.intro {
     background-color: #FFEB3B; /* Yellow background */
-    color: #000080; /* Navy Blue text */
+    color: red; /* Navy Blue text */
 }
 
 #education {
