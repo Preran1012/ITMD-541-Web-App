@@ -88,3 +88,4 @@ toggleBtn.addEventListener('click', () => {
 billInput.addEventListener('input', calculate);
 tipSlider.addEventListener('input', calculate);
 currencySelect.addEventListener('change', calculate);
+
