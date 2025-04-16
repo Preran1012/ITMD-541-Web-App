@@ -1,0 +1,121 @@
+:root {
+    --bg: #f2f4f8;
+    --card-bg: #ffffff;
+    --text: #2d3748;
+    --label: #4a5568;
+    --input: #cbd5e0;
+    --accent: #3182ce;
+    --error: #e53e3e;
+  }
+  
+  body.dark {
+    --bg: #1a202c;
+    --card-bg: #2d3748;
+    --text: #f7fafc;
+    --label: #cbd5e0;
+    --input: #4a5568;
+    --accent: #63b3ed;
+    --error: #feb2b2;
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    transition: background 0.4s ease, color 0.4s ease;
+  }
+  
+  .card {
+    background: var(--card-bg);
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    max-width: 400px;
+    width: 100%;
+    transition: background 0.4s ease;
+  }
+  
+  h1 {
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .input-group,
+  .slider-group,
+  .currency-convert,
+  .converted-results {
+    margin-bottom: 20px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 6px;
+    color: var(--label);
+    font-weight: 600;
+  }
+  
+  input,
+  select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--input);
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: transparent;
+    color: var(--text);
+    transition: all 0.3s ease;
+  }
+  
+  input:focus,
+  select:focus {
+    border-color: var(--accent);
+    outline: none;
+  }
+  
+  .slider-group input[type="range"] {
+    width: 100%;
+  }
+  
+  #tipPercent {
+    font-weight: 600;
+    color: var(--accent);
+  }
+  
+  .results,
+  .converted-results {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .theme-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
+  
+  #toggleTheme {
+    font-size: 1.2rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  #errorMsg {
+    color: var(--error);
+    text-align: center;
+    font-size: 0.9rem;
+    margin-top: 10px;
+  }
+  
