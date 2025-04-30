@@ -2,65 +2,38 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Good Tip Calculator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🌅 Sunrise Sunset Dashboard 🌇</title>
   <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="theme-toggle">
-    <button id="toggleTheme">🌙</button>
-  </div>
+  <main>
+    <h1>🌄 Sunrise & Sunset Times 🌆</h1>
 
-  <div class="card">
-    <h1>💸 Good Tip Calculator</h1>
+    <select id="locationSelect">
+      <option value="">-- 🌍 Select a Location --</option>
+      <option value="41.8781,-87.6298">Chicago, IL</option>
+      <option value="40.7128,-74.0060">New York, NY</option>
+      <option value="34.0522,-118.2437">Los Angeles, CA</option>
+      <option value="51.5074,-0.1278">London, UK</option>
+      <option value="48.8566,2.3522">Paris, France</option>
+      <option value="35.6895,139.6917">Tokyo, Japan</option>
+      <option value="55.7558,37.6173">Moscow, Russia</option>
+      <option value="-33.8688,151.2093">Sydney, Australia</option>
+      <option value="28.6139,77.2090">New Delhi, India</option>
+      <option value="-23.5505,-46.6333">São Paulo, Brazil</option>
+    </select>
 
-    <div class="input-group">
-      <label for="billTotal">🧾 Bill Total ($)</label>
-      <input type="text" id="billTotal" placeholder="e.g. 75.00" />
+    <button id="useLocationBtn">📍 Use My Location</button>
+
+    <div id="output">
+      <!-- Results will appear here -->
     </div>
+  </main>
 
-    <div class="input-group">
-      <label>📊 Total with 11% Tax</label>
-      <input type="text" id="totalWithTax" disabled />
-    </div>
-
-    <div class="slider-group">
-      <label for="tipSlider">💁 Tip: <span id="tipPercent">0%</span></label>
-      <input type="range" id="tipSlider" min="0" max="100" />
-    </div>
-
-    <div class="results">
-      <div class="result">
-        <label>💵 Tip Amount</label>
-        <input type="text" id="tipAmount" disabled />
-      </div>
-      <div class="result">
-        <label>💳 Total with Tip + Tax</label>
-        <input type="text" id="totalWithTipTax" disabled />
-      </div>
-    </div>
-
-    <div class="currency-convert">
-      <label for="currency">🌐 Convert to:</label>
-      <select id="currency">
-        <option value="usd">USD ($)</option>
-        <option value="inr">INR (₹)</option>
-        <option value="eur">EUR (€)</option>
-      </select>
-      <div id="conversionRateDisplay"></div>
-    </div>
-
-    <div class="converted-results">
-      <label>💱 Converted Tip Amount</label>
-      <input type="text" id="convertedTip" disabled />
-
-      <label>🧮 Converted Total</label>
-      <input type="text" id="convertedTotal" disabled />
-    </div>
-
-    <div id="errorMsg" class="error"></div>
-  </div>
+  <footer>
+    <p>🔗 Data provided by <a href="https://sunrisesunset.io/api/" target="_blank">sunrisesunset.io API</a></p>
+  </footer>
 
   <script src="script.js"></script>
 </body>
