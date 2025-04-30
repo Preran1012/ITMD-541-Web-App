@@ -1,91 +1,67 @@
-const billInput = document.getElementById('billTotal');
-const taxTotal = document.getElementById('totalWithTax');
-const tipSlider = document.getElementById('tipSlider');
-const tipPercent = document.getElementById('tipPercent');
-const tipAmount = document.getElementById('tipAmount');
-const totalWithTipTax = document.getElementById('totalWithTipTax');
-const currencySelect = document.getElementById('currency');
-const conversionRateDisplay = document.getElementById('conversionRateDisplay');
-const convertedTip = document.getElementById('convertedTip');
-const convertedTotal = document.getElementById('convertedTotal');
-const errorMsg = document.getElementById('errorMsg');
+const API_BASE = "https://api.sunrisesunset.io/json";
 
-// Mock currency rates
-const currencyRates = {
-  usd: 1,
-  inr: 83.12,
-  eur: 0.91
-};
-
-// Calculate values when inputs change
-function calculate() {
-  const bill = parseFloat(billInput.value);
-
-  if (isNaN(bill) || bill < 0) {
-    errorMsg.textContent = 'Please enter a valid positive bill amount.';
-    clearFields();
-    return;
+document.getElementById("locationSelect").addEventListener("change", function () {
+  const coords = this.value;
+  if (coords) {
+    const [lat, lng] = coords.split(",");
+    fetchData(lat, lng);
   }
-
-  errorMsg.textContent = '';
-
-  const tax = bill * 0.11;
-  const totalWithTaxVal = bill + tax;
-  const tipPercentVal = parseInt(tipSlider.value);
-  const tipVal = totalWithTaxVal * (tipPercentVal / 100);
-  const totalWithTip = totalWithTaxVal + tipVal;
-
-  // Update fields
-  taxTotal.value = totalWithTaxVal.toFixed(2);
-  tipPercent.textContent = `${tipPercentVal}%`;
-  tipAmount.value = tipVal.toFixed(2);
-  totalWithTipTax.value = totalWithTip.toFixed(2);
-
-  updateCurrencyConversion(tipVal, totalWithTip);
-}
-
-// Clear fields on error
-function clearFields() {
-  taxTotal.value = '';
-  tipPercent.textContent = '0%';
-  tipAmount.value = '';
-  totalWithTipTax.value = '';
-  convertedTip.value = '';
-  convertedTotal.value = '';
-  conversionRateDisplay.textContent = '';
-}
-
-// Convert to selected currency
-function updateCurrencyConversion(tipVal, totalWithTip) {
-  const selectedCurrency = currencySelect.value;
-  const rate = currencyRates[selectedCurrency];
-  const symbol = getCurrencySymbol(selectedCurrency);
-
-  conversionRateDisplay.textContent = `Conversion Rate: 1 USD = ${rate} ${symbol}`;
-  convertedTip.value = `${symbol}${(tipVal * rate).toFixed(2)}`;
-  convertedTotal.value = `${symbol}${(totalWithTip * rate).toFixed(2)}`;
-}
-
-function getCurrencySymbol(code) {
-  switch (code) {
-    case 'usd': return '$';
-    case 'inr': return '₹';
-    case 'eur': return '€';
-    default: return '';
-  }
-}
-
-// Dark mode toggle
-const toggleBtn = document.getElementById('toggleTheme');
-const body = document.body;
-
-toggleBtn.addEventListener('click', () => {
-  body.classList.toggle('dark');
-  toggleBtn.textContent = body.classList.contains('dark') ? '☀️' : '🌙';
 });
 
-// Event listeners
-billInput.addEventListener('input', calculate);
-tipSlider.addEventListener('input', calculate);
-currencySelect.addEventListener('change', calculate);
+document.getElementById("useLocationBtn").addEventListener("click", function () {
+  if ("geolocation" in navigator) {
+    navigator.geolocation.getCurrentPosition(position => {
+      const { latitude, longitude } = position.coords;
+      fetchData(latitude, longitude);
+    }, () => {
+      alert("Unable to retrieve your location.");
+    });
+  } else {
+    alert("Geolocation not supported.");
+  }
+});
 
+function fetchData(lat, lng) {
+  fetch(`${API_BASE}?lat=${lat}&lng=${lng}&date=today`)
+    .then(res => res.json())
+    .then(dataToday => {
+      fetch(`${API_BASE}?lat=${lat}&lng=${lng}&date=tomorrow`)
+        .then(res => res.json())
+        .then(dataTomorrow => {
+          renderData(dataToday.results, dataTomorrow.results);
+        });
+    })
+    .catch(() => {
+      document.getElementById("output").innerHTML = `<p>⚠️ Error fetching data.</p>`;
+    });
+}
+
+function renderData(today, tomorrow) {
+  const emojiMap = {
+    sunrise: '🌅',
+    sunset: '🌇',
+    dawn: '🌄',
+    dusk: '🌆',
+    day_length: '⏳',
+    solar_noon: '🌞',
+    timezone: '🌍'
+  };
+
+  const renderSection = (label, data) => {
+    const section = document.createElement('div');
+    section.className = 'day-column';
+    section.innerHTML = `<h2>${label}</h2>`;
+    Object.keys(emojiMap).forEach(key => {
+      const div = document.createElement('div');
+      div.className = 'card';
+      div.innerHTML = `<strong>${emojiMap[key]} ${key.replace('_', ' ').toUpperCase()}:</strong> ${data[key]}`;
+      section.appendChild(div);
+    });
+    return section;
+  };
+
+  const output = document.getElementById("output");
+  output.innerHTML = '';
+  output.appendChild(renderSection('Today', today));
+  output.appendChild(renderSection('Tomorrow', tomorrow));
+}
