@@ -6,7 +6,7 @@ body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
   background: linear-gradient(to bottom, #1e3c72, #2a5298);
-  color: white;
+  color: #000; /* Changed to black */
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -23,15 +23,16 @@ main {
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #000; /* Ensure text inside main is black */
 }
 
 h1 {
   text-align: center;
   margin-bottom: 20px;
   font-size: 2.2em;
+  color: #000; /* Black heading */
 }
 
-/* General select and button styles */
 select, button {
   width: 100%;
   padding: 12px;
@@ -40,7 +41,7 @@ select, button {
   border: none;
   border-radius: 10px;
   background: rgba(255, 255, 255, 0.15);
-  color: white;
+  color: #000; /* Black text */
   backdrop-filter: blur(6px);
   cursor: pointer;
   transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
@@ -58,8 +59,8 @@ select:focus, button:hover {
 
 /* 🌍 Current location button custom color */
 #current-location-btn {
-  background: rgba(0, 128, 255, 0.4); /* blue tone */
-  color: #ffffff;
+  background: rgba(0, 128, 255, 0.4);
+  color: #000; /* Black text */
 }
 
 #current-location-btn:hover {
@@ -68,18 +69,17 @@ select:focus, button:hover {
 
 /* 📍 Select a location dropdown custom color */
 #location-select {
-  background: rgba(255, 99, 71, 0.4); /* reddish tone */
-  color: #ffffff;
+  background: rgba(255, 99, 71, 0.4);
+  color: #000; /* Black text */
 }
 
 #location-select:focus {
   background: rgba(255, 99, 71, 0.6);
 }
 
-/* Dropdown menu options */
 select option {
   background-color: #1e3c72;
-  color: #ffffff;
+  color: #000; /* Black text for dropdown options */
   padding: 10px;
 }
 
@@ -89,6 +89,7 @@ select option {
   gap: 20px;
   justify-content: space-between;
   flex-wrap: wrap;
+  color: #000;
 }
 
 .day-column {
@@ -98,12 +99,13 @@ select option {
   border-radius: 12px;
   padding: 15px;
   backdrop-filter: blur(6px);
+  color: #000;
 }
 
 .day-column h2 {
   text-align: center;
   margin-bottom: 10px;
-  color: #e3f2fd;
+  color: #000; /* Black heading */
   font-size: 1.3em;
 }
 
@@ -116,6 +118,7 @@ select option {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
+  color: #000;
 }
 
 .card:hover {
@@ -129,10 +132,11 @@ footer {
   padding: 15px;
   font-size: 0.9em;
   text-align: center;
+  color: #000;
 }
 
 footer a {
-  color: #a7cdf2;
+  color: #000; /* Black link text */
   text-decoration: none;
 }
 
