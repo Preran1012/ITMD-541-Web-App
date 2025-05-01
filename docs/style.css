@@ -31,6 +31,7 @@ h1 {
   font-size: 2.2em;
 }
 
+/* Updated select and button styles */
 select, button {
   width: 100%;
   padding: 12px;
@@ -38,18 +39,28 @@ select, button {
   font-size: 1em;
   border: none;
   border-radius: 10px;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.15);
   color: white;
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(6px);
   cursor: pointer;
   transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
 }
 
 select:focus, button:hover {
   background: rgba(255, 255, 255, 0.3);
   outline: none;
   transform: scale(1.02);
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 10px rgba(0, 204, 255, 0.4);
+}
+
+/* Dropdown menu options */
+select option {
+  background-color: #1e3c72;
+  color: #ffffff;
+  padding: 10px;
 }
 
 #output {
