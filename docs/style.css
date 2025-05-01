@@ -31,7 +31,7 @@ h1 {
   font-size: 2.2em;
 }
 
-/* Updated select and button styles */
+/* General select and button styles */
 select, button {
   width: 100%;
   padding: 12px;
@@ -54,6 +54,26 @@ select:focus, button:hover {
   outline: none;
   transform: scale(1.02);
   box-shadow: 0 0 10px rgba(0, 204, 255, 0.4);
+}
+
+/* 🌍 Current location button custom color */
+#current-location-btn {
+  background: rgba(0, 128, 255, 0.4); /* blue tone */
+  color: #ffffff;
+}
+
+#current-location-btn:hover {
+  background: rgba(0, 128, 255, 0.6);
+}
+
+/* 📍 Select a location dropdown custom color */
+#location-select {
+  background: rgba(255, 99, 71, 0.4); /* reddish tone */
+  color: #ffffff;
+}
+
+#location-select:focus {
+  background: rgba(255, 99, 71, 0.6);
 }
 
 /* Dropdown menu options */
